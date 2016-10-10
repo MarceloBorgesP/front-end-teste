@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="taxes">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  
+  <title>Simulador de Impostos</title>
+</head>
+<body>
+  <div class="container" ng-controller="main">
+    <div class="jumbotron">
+      <div class="row">
+        <h2 class="main-title padding-vert-l">Simulador de Impostos</h2>
+        <div class="col-md-offset-1 col-md-5">
+          <form class="panel panel-default" ng-submit="simulate($event, form)">
+            <div class="panel-heading">
+              <h3 class="panel-title subtitle padding-vert-m">Preencha os campos</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group" ng-init="form.tipo='lucropresumido'">
+                <div class="radio-inline">
+                  <label>
+                    <input type="radio" ng-model="form.tipo" name="presumido" id="presumido" value="lucropresumido">
+                    Lucro presumido
+                  </label>
+                </div>
+                <div class="radio-inline">
+                  <label>
+                    <input type="radio" ng-model="form.tipo" name="simples" id="simples" value="simples">
+                    Simples nacional
+                  </label>
+                </div>
+              </div>
+                <div class="form-group">
+                  <label for="faturamento">Faturamento no mês</label>
+                  <input type="text" class="form-control money-mask" id="faturamento" placeholder="Ex: 999.99" ng-model="form.faturamento" required>
+                </div>
+                <div class="form-group">
+                  <label for="fatanterior">Folha</label>
+                  <input type="text" class="form-control money-mask" id="folha" placeholder="Ex: 999.99" ng-model="form.folha" required>
+                </div>
+                <div class="form-group" ng-if="form.tipo == 'simples'">
+                  <label for="fatanterior">Fatura Anterior</label>
+                  <input type="text" class="form-control money-mask" id="fatanterior" placeholder="Ex: 999.99" ng-model="form.fatanterior" required>
+                </div>
+                <div class="form-group" ng-if="form.tipo == 'simples'">
+                  <label for="atividade">Atividade</label>
+                  <select class="form-control" name="atividade" id="atividade" ng-init="form.activity = activities[activities.length-1]" ng-model="form.activity" ng-options="activity.descricao for activity in activities" required>
+                  </select>
+                </div>
+              <small class="help-block">* Valores em reais.</small>
+              <input type="submit" class="btn btn-default pull-right" value="Enviar">
+            </div>
+          </form>
+        </div>
+        <div class="col-md-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title subtitle padding-vert-m">Seus Impostos</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped" ng-if="result.success == true">
+                <thead>
+                  <tr> 
+                    <td></td>
+                    <td>Descrição</td>
+                    <td>Valor</td>
+                    <td>Alíquota</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in result.objects track by $index">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.descricao}}</td>
+                    <td>R$ {{item.valor}}</td>
+                    <td>R$ {{item.aliquota}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
+  <script src="http://jquerypriceformat.com/txt/jquery.price_format.2.0.min.js_.txt"></script>
+  <script src="assets/js/controllers/main.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>

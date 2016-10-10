@@ -1,0 +1,54 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+body, .jumbotron {
+  background-color: #fafafa;
+}
+
+/*TYPOGRAPHY*/
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin-top: 10px 0;
+  line-height: 1.1;
+}
+
+.main-title {
+  font-weight: 300;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 30px;
+  color:#2196F3;
+}
+
+.subtitle {
+  margin: 0;
+  vertical-align: middle;
+  opacity: 0.54;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+/*HELPERS*/
+
+.padding-vert-l {
+  padding: 30px 0px;
+}
+
+.padding-vert-m {
+  padding: 20px 0px;
+}
+
+/*PANEL*/
+
+.panel-default>.panel-heading {
+  background-color: #fff;
+}
+
+.panel {
+  min-height: 400px;
+  border: 1px solid #e8e8e8;
+  background-color: #fdfdfd;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+}
