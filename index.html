@@ -18,7 +18,7 @@
             <div class="panel-heading">
               <h3 class="panel-title subtitle padding-vert-m">Preencha os campos</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body text-center">
               <div class="form-group" ng-init="form.tipo='lucropresumido'">
                 <div class="radio-inline">
                   <label>
@@ -35,26 +35,27 @@
               </div>
                 <div class="form-group">
                   <label for="faturamento">Faturamento no mês</label>
-                  <input type="text" class="form-control money-mask" id="faturamento" placeholder="Ex: 999.99" ng-model="form.faturamento" required>
+                  <input type="number" step=0.01 class="form-control money-mask" id="faturamento" placeholder="Ex: 999.99" ng-model="form.faturamento" required>
                 </div>
                 <div class="form-group">
                   <label for="fatanterior">Folha</label>
-                  <input type="text" class="form-control money-mask" id="folha" placeholder="Ex: 999.99" ng-model="form.folha" required>
+                  <input type="number" step=0.01 class="form-control money-mask" id="folha" placeholder="Ex: 999.99" ng-model="form.folha" required>
                 </div>
                 <div class="form-group" ng-if="form.tipo == 'simples'">
-                  <label for="fatanterior">Fatura Anterior</label>
-                  <input type="text" class="form-control money-mask" id="fatanterior" placeholder="Ex: 999.99" ng-model="form.fatanterior" required>
+                  <label for="fatanterior">Fatura anterior</label>
+                  <input type="number" step=0.01 class="form-control money-mask" id="fatanterior" placeholder="Ex: 999.99" ng-model="form.fatanterior" required>
                 </div>
                 <div class="form-group" ng-if="form.tipo == 'simples'">
                   <label for="atividade">Atividade</label>
-                  <select class="form-control" name="atividade" id="atividade" ng-init="form.activity = activities[activities.length-1]" ng-model="form.activity" ng-options="activity.descricao for activity in activities" required>
+                  <select class="form-control" name="atividade" id="atividade" ng-init="form.atividade = atividades[atividades.length-1]" ng-model="form.atividade" ng-options="atividade.descricao for atividade in atividades" required>
                   </select>
                 </div>
-              <small class="help-block">* Valores em reais.</small>
-              <input type="submit" class="btn btn-default pull-right" value="Enviar">
+              <small class="help-block pull-left">* Valores em reais.</small>
+              <input type="submit" class="btn btn-primary pull-right" value="Enviar">
             </div>
           </form>
         </div>
+
         <div class="col-md-5">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -88,8 +89,6 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
-  <script src="http://jquerypriceformat.com/txt/jquery.price_format.2.0.min.js_.txt"></script>
   <script src="assets/js/controllers/main.js"></script>
-  <script src="assets/js/index.js"></script>
 </body>
 </html>
